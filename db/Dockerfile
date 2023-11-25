@@ -7,4 +7,4 @@ FROM timescale/timescaledb:latest-pg12
 # Set environment variables if necessary
 ENV POSTGRES_DB=cryptostream
 ENV POSTGRES_USER=bullionbear
-ENV POSTGRES_PASSWORD=yourpassword
+ENV POSTGRES_PASSWORD=Sunshine4Jellybean
