@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS depth (
+  id INT NOT NULL,
+  layer INT NOT NULL,
+  ask NUMERIC NOT NULL,
+  bid NUMERIC NOT NULL,
+  ask_vol NUMERIC NOT NULL,
+  bid_vol NUMERIC NOT NULL,
+  FOREIGN KEY (id) REFERENCES orderbook(id)
+);
