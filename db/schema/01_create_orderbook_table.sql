@@ -2,5 +2,7 @@ CREATE TABLE IF NOT EXISTS orderbook (
   id INT PRIMARY KEY,
   timestamp TIMESTAMPTZ NOT NULL,
   exchange VARCHAR(255) NOT NULL,
-  symbol VARCHAR(255) NOT NULL
+  symbol VARCHAR(255) NOT NULL,
+  pu INT NOT NULL,
+  p INT NOT NULL,
 );
