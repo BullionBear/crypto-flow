@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS orderbook (
   timestamp TIMESTAMPTZ NOT NULL,
   exchange VARCHAR(255) NOT NULL,
   symbol VARCHAR(255) NOT NULL,
+  instrument VARCHAR(255) NOT NULL,
   pu INT NOT NULL,
   p INT NOT NULL,
 );
