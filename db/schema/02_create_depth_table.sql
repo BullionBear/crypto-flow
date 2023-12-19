@@ -1,9 +1,7 @@
-CREATE TABLE IF NOT EXISTS depth (
-  id INT NOT NULL,
-  timestamp TIMESTAMPTZ NOT NULL,
-  layer INT NOT NULL,
-  side VARCHAR(255) NOT NULL,
-  price NUMERIC NOT NULL,
-  vol NUMERIC NOT NULL,
-  FOREIGN KEY (id) REFERENCES orderbook(id)
-)
+CREATE TABLE order_details (
+    order_update_id INT,
+    type TEXT, -- 'a' or 'b'
+    p FLOAT,
+    v FLOAT,
+    FOREIGN KEY (order_update_id) REFERENCES order_updates(id)
+);

@@ -1,1 +1,0 @@
-SELECT create_hypertable('orderbook', 'timestamp');
