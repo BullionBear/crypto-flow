@@ -2,6 +2,7 @@
 DB_CONTAINER_NAME = timescaledb
 DB_IMAGE = timescale/timescaledb:latest-pg12
 DB_PORT = 5432
+VOLUME_NAME = timescaledb-data
 POSTGRES_DB = cryptostream
 POSTGRES_USER = bullionbear
 POSTGRES_PASSWORD = Sunshine4Jellybean
@@ -34,7 +35,7 @@ create-volume:
 
 # Remove the volume
 remove-volume:
-	docker volume rm timescaledb_data
+	docker volume rm $(VOLUME_NAME)
 
 # View logs
 logs:
