@@ -17,7 +17,7 @@ start-db: volume-exists
 	-e MONGO_INITDB_ROOT_USERNAME=$(MONGO_USER) \
 	-e MONGO_INITDB_ROOT_PASSWORD=$(MONGO_PASSWORD) \
 	-v $(VOLUME_NAME):/data/db \
-	-p $(DB_PORT):27017
+	-p $(DB_PORT):27017 \
 	mongo:7.0.5
 
 stop-db:
