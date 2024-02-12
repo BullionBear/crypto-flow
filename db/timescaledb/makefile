@@ -21,7 +21,7 @@ start-db: volume-exists
 		-e POSTGRES_USER=$(POSTGRES_USER) \
 		-e POSTGRES_PASSWORD=$(POSTGRES_PASSWORD) \
 		-v `pwd`/schema:/docker-entrypoint-initdb.d \
-		-v timescaledb_data:/var/lib/postgresql/data \
+		-v $(VOLUME_NAME):/var/lib/postgresql/data \
 		$(DB_IMAGE)
 
 # Stop the TimescaleDB container
@@ -31,7 +31,7 @@ stop-db:
 
 # Create a volume for persisting data
 create-volume:
-	docker volume create timescaledb_data
+	docker volume create $(VOLUME_NAME)
 
 # Remove the volume
 remove-volume:
