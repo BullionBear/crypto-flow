@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This script still need to check
+
 # Step 1: Download the Go tar.gz file
 wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
 
