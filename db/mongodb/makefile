@@ -16,7 +16,7 @@ start-db: volume-exists
 	docker run -d --name $(DB_CONTAINER_NAME) \
 	-e MONGO_INITDB_ROOT_USERNAME=$(MONGO_USER) \
 	-e MONGO_INITDB_ROOT_PASSWORD=$(MONGO_PASSWORD) \
-	-v $(VOLUME_NAME):/data/db
+	-v $(VOLUME_NAME):/data/db \
 	mongo:7.0.5
 
 stop-db:
