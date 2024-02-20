@@ -1,5 +1,5 @@
 # Variables
-DB_CONTAINER_NAME = mongodb
+DB_CONTAINER_NAME = lynkora-mongo
 DB_IMAGE = mongo:7.0.5
 DB_PORT = 27017
 VOLUME_NAME = mongo-data
@@ -18,6 +18,7 @@ start-db: volume-exists
 	-e MONGO_INITDB_ROOT_PASSWORD=$(MONGO_PASSWORD) \
 	-v $(VOLUME_NAME):/data/db \
 	-p $(DB_PORT):27017 \
+	--network lynkora \
 	mongo:7.0.5
 
 stop-db:
