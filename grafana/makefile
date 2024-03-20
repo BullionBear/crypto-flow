@@ -1,6 +1,6 @@
 # Variables
 GRAFANA_CONTAINER_NAME = lynkora-grafana
-GRAFANA_IMAGE = grafana/grafana:9.1.0
+GRAFANA_IMAGE = grafana/grafana:10.0.12-ubuntu
 GRAFANA_PORT = 3000
 VOLUME_NAME = grafana-data
 GRAFANA_ADMIN_USER = bullionbear
