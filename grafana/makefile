@@ -19,7 +19,7 @@ start-grafana: volume-exists-grafana
 	-v $(VOLUME_NAME):/var/lib/grafana \
 	-p $(GRAFANA_PORT):3000 \
 	--network lynkora \
-	grafana/grafana:9.1.0
+	$(GRAFANA_IMAGE)
 
 stop-grafana:
 	docker stop $(GRAFANA_CONTAINER_NAME)
