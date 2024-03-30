@@ -1,7 +1,7 @@
 # Variables
 DB_CONTAINER_NAME = lynkora-mongo
 DB_IMAGE = mongo:7.0.5
-DB_PORT = 27017
+DB_PORT = 27010
 VOLUME_NAME = mongo-data
 MONGO_USER = bullionbear
 MONGO_PASSWORD = Sunshine4Jellybean
