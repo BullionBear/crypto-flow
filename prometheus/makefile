@@ -6,8 +6,8 @@ VOLUME_NAME = prometheus-data
 CONFIG_FILE = ./prometheus.yml
 
 NGINX_CONFIG = ./nginx.conf
-SSL_FULLCHAIN = /etc/letsencrypt/prometheus.lynkora.com/fullchain.pem
-SSL_PRIVKEY = /etc/letsencrypt/prometheus.lynkora.com/privkey.pem
+SSL_FULLCHAIN = /etc/letsencrypt/live/prometheus.lynkora.com/fullchain.pem
+SSL_PRIVKEY = /etc/letsencrypt/live/prometheus.lynkora.com/privkey.pem
 
 
 # Check if the volume exists and create it if not
