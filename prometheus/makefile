@@ -33,6 +33,10 @@ start-reverse-proxy:
 	--network lynkora \
 	-p 80:80 -p 443:443 -d nginx
 
+stop-reverse-proxy:
+	docker stop proxy-prometheus
+	docker rm proxy-prometheus
+
 stop-prometheus:
 	docker stop $(PROMETHEUS_CONTAINER_NAME)
 	docker rm $(PROMETHEUS_CONTAINER_NAME)
