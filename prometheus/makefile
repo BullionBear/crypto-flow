@@ -5,6 +5,7 @@ PROMETHEUS_PORT = 9090
 VOLUME_NAME = prometheus-data
 CONFIG_FILE = ./prometheus.yml
 
+NGINX_CONFIG = ./nginx.conf
 SSL_FULLCHAIN = /etc/letsencrypt/prometheus.lynkora.com/fullchain.pem
 SSL_PRIVKEY = /etc/letsencrypt/prometheus.lynkora.com/privkey.pem
 
@@ -28,6 +29,7 @@ start-reverse-proxy:
 	docker run --name proxy-prometheus \
 	-v $(SSL_FULLCHAIN):/etc/nginx/ssl/prometheus.lynkora.com.crt \
 	-v $(SSL_PRIVKEY):/etc/nginx/ssl/prometheus.lynkora.com.key \
+	-v $(NGINX_CONFIG):/etc/nginx/conf.d:ro \
 	--network lynkora \
 	-p 80:80 -p 443:443 -d nginx
 
