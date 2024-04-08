@@ -20,7 +20,6 @@ start-prometheus: volume-exists-prometheus
 	-p $(PROMETHEUS_PORT):9090 \
 	-v $(VOLUME_NAME):/prometheus \
 	-v $(CONFIG_FILE):/etc/prometheus/prometheus.yml \
-	-v $(WEB_CONFIG_FILE):/etc/prometheus/web.yml \
 	--network lynkora \
 	$(PROMETHEUS_IMAGE) \
 	--config.file=/etc/prometheus/prometheus.yml
