@@ -4,6 +4,7 @@ PROMETHEUS_IMAGE = prom/prometheus:v2.51.0
 PROMETHEUS_PORT = 9090
 VOLUME_NAME = prometheus-data
 CONFIG_FILE = ./prometheus.yml
+WEB_CONFIG_FILE = ./web.yml
 
 NGINX_CONFIG = ./nginx.conf
 SSL_FULLCHAIN = /etc/letsencrypt/live/prometheus.lynkora.com/fullchain.pem
@@ -21,9 +22,11 @@ start-prometheus: volume-exists-prometheus
 	-p $(PROMETHEUS_PORT):9090 \
 	-v $(VOLUME_NAME):/prometheus \
 	-v $(CONFIG_FILE):/etc/prometheus/prometheus.yml \
+	-v $(WEB_CONFIG_FILE):/etc/prometheus/web.yml \
 	--network lynkora \
 	$(PROMETHEUS_IMAGE) \
-	--config.file=/etc/prometheus/prometheus.yml
+	--config.file=/etc/prometheus/prometheus.yml \
+	--web.config.file=/etc/prometheus/web.yml
 
 start-reverse-proxy:
 	docker run --name proxy-prometheus \
