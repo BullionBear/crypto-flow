@@ -29,7 +29,7 @@ start-reverse-proxy:
 	docker run --name proxy-prometheus \
 	-v $(SSL_FULLCHAIN):/etc/nginx/ssl/prometheus.lynkora.com.crt \
 	-v $(SSL_PRIVKEY):/etc/nginx/ssl/prometheus.lynkora.com.key \
-	-v $(NGINX_CONFIG):/etc/nginx/conf.d:ro \
+	-v $(NGINX_CONFIG):/etc/nginx/conf.d/default.conf:ro \
 	--network lynkora \
 	-p 80:80 -p 443:443 -d nginx
 
