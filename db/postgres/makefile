@@ -21,6 +21,8 @@ start-db: volume-exists
 	-v $(VOLUME_NAME):/var/lib/postgresql/data \
 	-p $(DB_PORT):5432 \
 	--network lynkora \
+	--memory 8g \
+	--cpus 4 \
 	$(DB_IMAGE)
 
 stop-db:
