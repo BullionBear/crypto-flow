@@ -19,6 +19,8 @@ start-db: volume-exists
 	-v $(VOLUME_NAME):/data/db \
 	-p $(DB_PORT):27017 \
 	--network lynkora \
+	--memory 8g \
+	--cpus 4 \
 	mongo:7.0.5
 
 stop-db:
