@@ -1,0 +1,16 @@
+users:
+  admin:
+    disabled: false
+    displayname: "admin"
+    password: "$argon2id$v=19$m=65536,t=3,p=4$wHINqFpFclDWvIF/ECrksg$9ujqbU8Oo4ZISqdj58V3sonz43MpkSs0EqxpdNo2P9k"
+    email: coastq22889@icloud.com
+    groups:
+      - admin
+      - user
+  yite:
+    disabled: false
+    displayname: "yite"
+    password: "$argon2id$v=19$m=65536,t=3,p=4$5T5yLdiupZ2re4DhSPj+JA$+aiddWloCsUCaLHdVEzk3L+f+sTxbz83ggTITjSVet8"
+    email: yite@lynxlinkage.com
+    groups:
+      - user
