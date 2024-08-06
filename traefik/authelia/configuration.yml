@@ -33,16 +33,14 @@ notifier:
     username: noreply@lynxlinkage.com
     password: EnPfvMb2hon#OCplqvrz
     host: smtp.hostinger.com
-    port: 456
+    port: 587
     sender: noreply@lynxlinkage.com
     startup_check_address: noreply@lynxlinkage.com
-   
+    tls:
+      skip_verify: false
 
 storage:
   encryption_key: SoUtP3LE1fkWo3xbjsBga4Oar9DdyBhdBhqgpV1u1qetziXedzpIncHefHWAaeX0xo4q9zjmJoFN9h9K4CPkfCFusS6PQg5eXzmadhM2eH4lIHA83A8Ju1HIV4mdjgEe
   local:
     path: /config/db.sqlite3
 
-notifier:
-  filesystem:
-    filename: /config/notification.txt
