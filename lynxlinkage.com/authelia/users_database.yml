@@ -1,16 +1,17 @@
 users:
   admin:
     disabled: false
-    displayname: "admin"
-    password: "$argon2id$v=19$m=65536,t=3,p=4$wHINqFpFclDWvIF/ECrksg$9ujqbU8Oo4ZISqdj58V3sonz43MpkSs0EqxpdNo2P9k"
+    displayname: "yite"
+    password: "$argon2id$v=19$m=65536,t=3,p=4$F7iyD1L8ZEMIgjYU9X5tSA$+4YrKA+DRf+VGKefGnytbglWmJ4O8c+tybmNokqQ0LY"
     email: coastq22889@icloud.com
     groups:
       - admin
       - user
   yite:
     disabled: false
-    displayname: "yite"
-    password: "$argon2id$v=19$m=65536,t=3,p=4$5T5yLdiupZ2re4DhSPj+JA$+aiddWloCsUCaLHdVEzk3L+f+sTxbz83ggTITjSVet8"
+    displayname: "guest"
+    password: "$argon2id$v=19$m=65536,t=3,p=4$P0z1qtIKZamP96pMGwJevw$0s+utbXt24E/mZhQ/ypBM67yj4lP6Q+iPO2Bx0EB0V8"
+    # docker run authelia/authelia:latest authelia crypto hash generate argon2 --password 'guest'
     email: yite@lynxlinkage.com
     groups:
       - user
