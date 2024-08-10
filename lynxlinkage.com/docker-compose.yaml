@@ -70,6 +70,27 @@ services:
       - "traefik.http.routers.fastapi.rule=Host(`fugle.${DOMAIN}`)"
       - "traefik.http.routers.fastapi.entrypoints=websecure"
       - "traefik.http.routers.fastapi.tls.certresolver=myresolver"
+  
+  postgres:
+    image: postgres:16.2
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: lynxlinkage
+      POSTGRES_USER: bullionbear
+      POSTGRES_PASSWORD: Sunshine4Jellybean
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - lynk
+      - loki
+    ports:
+      - "5432:5432"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fastapi.rule=Host(`postgres.${DOMAIN}`)"
+      - "traefik.http.routers.fastapi.entrypoints=websecure"
+      - "traefik.http.routers.fastapi.tls.certresolver=myresolver"
 
   grafana:
     image: grafana/grafana:9.1.6
@@ -242,3 +263,5 @@ services:
     networks:
       - loki
 
+volumes:
+  postgres_data:
