@@ -74,8 +74,8 @@ services:
     container_name: grafana
     restart: unless-stopped
     volumes:
-      - ./grafana/data:/var/lib/grafana
-      - ./grafana.ini:/etc/grafana/grafana.ini:ro
+      - grafana_data:/var/lib/grafana
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini:ro
     networks:
       - lynk
     labels:
@@ -83,7 +83,9 @@ services:
       - "traefik.http.routers.grafana.rule=Host(`grafana.${DOMAIN}`)"
       - "traefik.http.routers.grafana.entrypoints=websecure"
       - "traefik.http.routers.grafana.tls.certresolver=myresolver"
-      - "traefik.http.routers.grafana.middlewares=authelia"
+
+volumes:
+  grafana_data:
 
 networks:
   lynk:
