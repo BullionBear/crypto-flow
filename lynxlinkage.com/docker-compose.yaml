@@ -138,21 +138,6 @@ services:
     networks:
       - lynx
 
-  log-generator:
-    image: mingrammer/flog
-    command:
-      - --loop
-      - --format=json
-      - --number=10 # number of log lines to generate per second
-      - --delay=100ms # delay between log lines
-      - --output=/var/log/generated-logs.txt
-      - --overwrite
-      - --type=log
-    volumes:
-      - ./loki/:/var/log/
-    networks:
-      - lynx
-
   promtail:
     image: grafana/promtail:2.9.2
     volumes:
@@ -184,7 +169,13 @@ services:
     volumes:
       - ./.data/minio:/data
     networks:
-      - lynx
+      - lynk
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.minio.rule=Host(`minio.${DOMAIN}`)"
+      - "traefik.http.routers.minio.entrypoints=websecure"
+      - 'traefik.http.routers.minio.tls=true'
+      - "traefik.http.routers.minio.tls.certresolver=myresolver"
 
   loki-gateway:
     image: nginx:1.27
@@ -194,7 +185,13 @@ services:
       - "8080:80"
       - "3100"
     networks:
-      - loki
+      - lynk
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.loki.rule=Host(`minio.${DOMAIN}`)"
+      - "traefik.http.routers.loki.entrypoints=websecure"
+      - 'traefik.http.routers.loki.tls=true'
+      - "traefik.http.routers.loki.tls.certresolver=myresolver"
 
   loki-read:
     image: grafana/loki:2.9.2
@@ -205,7 +202,7 @@ services:
       - "7946"
     command: "-config.file=/etc/loki/loki.yaml -target=read -legacy-read-mode=false"
     networks:
-      - loki
+      - lynk
     restart: always
     deploy:
       mode: replicated
@@ -220,7 +217,7 @@ services:
       - "7946"
     command: "-config.file=/etc/loki/loki.yaml -target=write"
     networks:
-      - loki
+      - lynk
     restart: always
     deploy:
       mode: replicated
@@ -236,7 +233,7 @@ services:
       - "7946"
     command: "-config.file=/etc/loki/loki.yaml -target=backend -legacy-read-mode=false"
     networks:
-      - loki
+      - lynk
     restart: always
     deploy:
       mode: replicated
@@ -252,10 +249,9 @@ services:
       - alertmanager_data:/data
     command: --config.file=/config/alertmanager.yml --log.level=debug
     networks:
-      - loki
+      - lynk
 networks:
   lynk:
-  loki:
 
 volumes:
   prometheus_data:
