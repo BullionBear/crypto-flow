@@ -67,6 +67,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.fastapi.rule=Host(`fugle.${DOMAIN}`)"
       - "traefik.http.routers.fastapi.entrypoints=websecure"
+      - 'traefik.http.routers.fastapi.tls=true'
       - "traefik.http.routers.fastapi.tls.certresolver=myresolver"
   
   postgres:
@@ -101,6 +102,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.grafana.rule=Host(`grafana.${DOMAIN}`)"
       - "traefik.http.routers.grafana.entrypoints=websecure"
+      - 'traefik.http.routers.grafana.tls=true'
       - "traefik.http.routers.grafana.tls.certresolver=myresolver"
 
   prometheus:
