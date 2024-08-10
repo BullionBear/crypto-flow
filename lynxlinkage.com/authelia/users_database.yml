@@ -2,7 +2,7 @@ users:
   admin:
     disabled: false
     displayname: "yite"
-    password: "$argon2id$v=19$m=65536,t=3,p=4$F7iyD1L8ZEMIgjYU9X5tSA$+4YrKA+DRf+VGKefGnytbglWmJ4O8c+tybmNokqQ0LY"
+    password: "$argon2id$v=19$m=65536,t=3,p=4$mWZSYKhz1XCUryqcOgyvdA$IfVJrJcjPQ4M4LEIcwGpQS0I9Tq3g9AyAtg9NrqD/PA"
     email: coastq22889@icloud.com
     groups:
       - admin
