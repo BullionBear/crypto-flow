@@ -74,8 +74,8 @@ services:
     container_name: grafana
     restart: unless-stopped
     volumes:
-      - grafana_data:/var/lib/grafana
-      - ./grafana/grafana.ini:/etc/grafana/grafana.ini:ro
+      - ./grafana/volume:/var/lib/grafana
+      - ./grafana.ini:/etc/grafana/grafana.ini:ro
     networks:
       - lynk
     labels:
