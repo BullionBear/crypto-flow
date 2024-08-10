@@ -188,7 +188,7 @@ services:
       - lynk
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.loki.rule=Host(`minio.${DOMAIN}`)"
+      - "traefik.http.routers.loki.rule=Host(`loki.${DOMAIN}`)"
       - "traefik.http.routers.loki.entrypoints=websecure"
       - 'traefik.http.routers.loki.tls=true'
       - "traefik.http.routers.loki.tls.certresolver=myresolver"
