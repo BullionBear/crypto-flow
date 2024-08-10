@@ -84,11 +84,6 @@ services:
       - loki
     ports:
       - "5432:5432"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.fastapi.rule=Host(`postgres.${DOMAIN}`)"
-      - "traefik.http.routers.fastapi.entrypoints=websecure"
-      - "traefik.http.routers.fastapi.tls.certresolver=myresolver"
 
   grafana:
     image: grafana/grafana:9.1.6
@@ -101,6 +96,7 @@ services:
       - grafana_data:/var/lib/grafana
     networks:
       - lynk
+      - loki
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.grafana.rule=Host(`grafana.${DOMAIN}`)"
