@@ -50,6 +50,25 @@ services:
     networks:
       - lynk
 
+  fugle-fastapi:
+    image: yitech/fugle-fastapi:latest
+    container_name: fastapi
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./fugle-fastapi/credentials/cryptfile_pass.cfg:/root/.local/share/python_keyring/cryptfile_pass.cfg:ro
+      - ./fugle-fastapi/config.ini:/app/config.ini:ro
+      - ./fugle-fastapi/cert.p12:/app/cert.p12
+      - ./fugle-fastapi/.env:/app/.env:ro
+    networks:
+      - lynk
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fastapi.rule=Host(`fugle.${DOMAIN}`)"
+      - "traefik.http.routers.fastapi.entrypoints=websecure"
+      - "traefik.http.routers.fastapi.tls.certresolver=myresolver"
+
 networks:
   lynk:
     external: true
