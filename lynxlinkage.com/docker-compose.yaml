@@ -136,7 +136,7 @@ services:
     volumes:
       - ./loki:/loki
     networks:
-      - lynx
+      - lynk
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -147,7 +147,7 @@ services:
       - "9080:9080"
     command: -config.file=/etc/promtail/promtail.yaml
     networks:
-      - lynx
+      - lynk
 
   minio:
     image: minio/minio
