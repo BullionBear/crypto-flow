@@ -82,7 +82,6 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - lynk
-      - loki
     ports:
       - "5432:5432"
 
@@ -97,7 +96,6 @@ services:
       - grafana_data:/var/lib/grafana
     networks:
       - lynk
-      - loki
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.grafana.rule=Host(`grafana.${DOMAIN}`)"
@@ -110,7 +108,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./config/prometheus.yaml:/etc/prometheus/prometheus.yml
+      - ./o11y/prometheus.yaml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
     command:
       [
@@ -121,11 +119,11 @@ services:
       ]
     networks:
       - lynk
-      - loki
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.prometheus.rule=Host(`prometheus.${DOMAIN}`)"
       - "traefik.http.routers.prometheus.entrypoints=websecure"
+      - 'traefik.http.routers.prometheus.tls=true'
       - "traefik.http.routers.prometheus.tls.certresolver=myresolver"
 
   init:
@@ -138,7 +136,7 @@ services:
     volumes:
       - ./loki:/loki
     networks:
-      - loki
+      - lynx
 
   log-generator:
     image: mingrammer/flog
@@ -153,7 +151,7 @@ services:
     volumes:
       - ./loki/:/var/log/
     networks:
-      - loki
+      - lynx
 
   promtail:
     image: grafana/promtail:2.9.2
@@ -164,7 +162,7 @@ services:
       - "9080:9080"
     command: -config.file=/etc/promtail/promtail.yaml
     networks:
-      - loki
+      - lynx
 
   minio:
     image: minio/minio
@@ -186,7 +184,7 @@ services:
     volumes:
       - ./.data/minio:/data
     networks:
-      - loki
+      - lynx
 
   loki-gateway:
     image: nginx:1.27
