@@ -125,6 +125,9 @@ services:
       - "traefik.http.routers.prometheus.entrypoints=websecure"
       - 'traefik.http.routers.prometheus.tls=true'
       - "traefik.http.routers.prometheus.tls.certresolver=myresolver"
+      - 'traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://auth.${DOMAIN}'
+      - 'traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true'
+      - 'traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email'
 
   init:
     image: grafana/loki:2.9.2
