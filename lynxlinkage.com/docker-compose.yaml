@@ -145,7 +145,7 @@ services:
     image: grafana/promtail:2.9.2
     volumes:
       - ./loki/:/var/log/
-      - ./config:/etc/promtail/
+      - ./o11y:/etc/promtail/
     ports:
       - "9080:9080"
     command: -config.file=/etc/promtail/promtail.yaml
@@ -177,7 +177,7 @@ services:
   loki-gateway:
     image: nginx:1.27
     volumes:
-      - ./config/nginx.conf:/etc/nginx/nginx.conf
+      - ./o11y/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - "8080:80"
       - "3100"
@@ -187,7 +187,7 @@ services:
   loki-read:
     image: grafana/loki:2.9.2
     volumes:
-      - ./config:/etc/loki/
+      - ./o11y:/etc/loki/
     ports:
       - "3100"
       - "7946"
@@ -202,7 +202,7 @@ services:
   loki-write:
     image: grafana/loki:2.9.2
     volumes:
-      - ./config:/etc/loki/
+      - ./o11y:/etc/loki/
     ports:
       - "3100"
       - "7946"
@@ -217,7 +217,7 @@ services:
   loki-backend:
     image: grafana/loki:2.9.2
     volumes:
-      - ./config:/etc/loki/
+      - ./o11y:/etc/loki/
       - ./rules:/loki/rules:ro
     ports:
       - "3100"
@@ -236,7 +236,7 @@ services:
     ports:
       - "9093:9093"
     volumes:
-      - "./config:/config"
+      - "./o11y:/config"
       - alertmanager-data:/data
     command: --config.file=/config/alertmanager.yml --log.level=debug
     networks:
