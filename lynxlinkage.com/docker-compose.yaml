@@ -167,7 +167,7 @@ services:
       - MINIO_PROMETHEUS_AUTH_TYPE=public
       - MINIO_UPDATE=off
     ports:
-      - "9000:9000"
+      - "9000"
       - "9001:9001"
     volumes:
       - ./.data/minio:/data
@@ -179,6 +179,7 @@ services:
       - "traefik.http.routers.minio.entrypoints=websecure"
       - 'traefik.http.routers.minio.tls=true'
       - "traefik.http.routers.minio.tls.certresolver=myresolver"
+      - "traefik.http.services.minio.loadbalancer.server.port=9001" # Route traffic to port 9001
 
   loki-gateway:
     image: nginx:1.27
