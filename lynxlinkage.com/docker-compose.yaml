@@ -61,7 +61,7 @@ services:
       - ./fugle-fastapi/config.ini:/app/config.ini:ro
       - ./fugle-fastapi/cert.p12:/app/cert.p12:ro
       - ./fugle-fastapi/.env:/app/.env:ro
-      - ./logs:/var/log
+      - /var/log:/app/logs
     networks:
       - lynk
     labels:
