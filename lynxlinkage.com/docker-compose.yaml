@@ -51,7 +51,7 @@ services:
       - lynk
 
   fugle-fastapi:
-    image: yitech/fugle-fastapi:latest
+    image: yitech/fugle-fastapi:aa3309
     container_name: fastapi
     restart: unless-stopped
     ports:
@@ -61,6 +61,7 @@ services:
       - ./fugle-fastapi/config.ini:/app/config.ini:ro
       - ./fugle-fastapi/cert.p12:/app/cert.p12:ro
       - ./fugle-fastapi/.env:/app/.env:ro
+      - ./logs:/var/log
     networks:
       - lynk
     labels:

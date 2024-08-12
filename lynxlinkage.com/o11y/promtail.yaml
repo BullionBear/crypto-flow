@@ -17,4 +17,4 @@ scrape_configs:
           - localhost
         labels:
           job: fugle-fastapi
-          __path__: /var/log/fugle-fastapi-*.log
+          __path__: /var/log/fugle-fastapi.log
