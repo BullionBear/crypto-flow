@@ -51,7 +51,7 @@ services:
       - lynk
 
   fugle-fastapi:
-    image: yitech/fugle-fastapi:b10c95
+    image: yitech/fugle-fastapi:778feffa246f0db8e6af1774ec188a112c07ada3e124993182439232ff9bd4fa
     container_name: fastapi
     restart: unless-stopped
     ports:
@@ -70,7 +70,7 @@ services:
       - "traefik.http.routers.fastapi.entrypoints=websecure"
       - 'traefik.http.routers.fastapi.tls=true'
       - "traefik.http.routers.fastapi.tls.certresolver=myresolver"
-  
+
   postgres:
     image: postgres:16.2
     container_name: postgres
@@ -111,13 +111,7 @@ services:
     volumes:
       - ./o11y/prometheus.yaml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
-    command:
-      [
-        '--log.level=debug',
-        '--config.file=/etc/prometheus/prometheus.yml',
-        '--enable-feature=remote-write-receiver',
-        '--query.lookback-delta=30s'
-      ]
+    command: [ '--log.level=debug', '--config.file=/etc/prometheus/prometheus.yml', '--enable-feature=remote-write-receiver', '--query.lookback-delta=30s' ]
     networks:
       - lynk
     labels:
@@ -257,6 +251,7 @@ services:
       - lynk
 networks:
   lynk:
+
 
 volumes:
   prometheus_data:
