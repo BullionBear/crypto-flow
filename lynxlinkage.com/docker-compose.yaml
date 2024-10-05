@@ -51,7 +51,7 @@ services:
       - lynk
 
   fugle-fastapi:
-    image: yitech/fugle-fastapi:74c3cc
+    image: yitech/fugle-fastapi:cd6ff3
     container_name: fastapi
     restart: unless-stopped
     ports:
