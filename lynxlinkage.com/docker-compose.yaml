@@ -107,7 +107,7 @@ services:
     links:
       - "postgres:pgsql-server"
     volumes:
-      - pgadmin-data:/var/lib/pgadmin
+      - pgadmin_data:/var/lib/pgadmin
 
   grafana:
     image: grafana/grafana:11.1.4-ubuntu
@@ -281,3 +281,4 @@ volumes:
   grafana_data:
   postgres_data:
   alertmanager_data:
+  pgadmin_data:
