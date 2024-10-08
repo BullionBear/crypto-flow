@@ -125,6 +125,18 @@ services:
     depends_on:
       postgres:
         condition: service_started
+    networks:
+      - lynk
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kestra.rule=Host(`kestra.${DOMAIN}`)"
+      - "traefik.http.routers.kestra.entrypoints=websecure"
+      - 'traefik.http.routers.kestra.tls=true'
+      - "traefik.http.routers.kestra.tls.certresolver=myresolver"
+      - "traefik.http.services.kestra.loadbalancer.server.port=8080" # Route traffic to port 8080
+      - 'traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://auth.${DOMAIN}'
+      - 'traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true'
+      - 'traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email'
 
   grafana:
     image: grafana/grafana:11.1.4-ubuntu
