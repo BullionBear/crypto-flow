@@ -110,31 +110,31 @@ services:
       - "traefik.http.routers.pgadmin.tls.certresolver=myresolver"
 
   kestra:
-  image: kestra/kestra:latest
-  pull_policy: always
-  user: "root"
-  command: server standalone --worker-thread=128 --config /etc/config/application.yml
-  volumes:
-    - kestra_data:/app/storage
-    - /var/run/docker.sock:/var/run/docker.sock
-    - /tmp/kestra-wd:/tmp/kestra-wd
-    - ./kestra/application.yml:/etc/config/application.yml
-  depends_on:
-    postgres:
-      condition: service_started
-  networks:
-    - lynk
-  labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.kestra.rule=Host(`kestra.${DOMAIN}`)"
-    - "traefik.http.routers.kestra.entrypoints=websecure"
-    - "traefik.http.routers.kestra.tls=true"
-    - "traefik.http.routers.kestra.tls.certresolver=myresolver"
-    - "traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://auth.${DOMAIN}"
-    - "traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true"
-    - "traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email"
-    - "traefik.http.services.kestra.loadbalancer.server.port=8080"
-    - "traefik.http.routers.kestra.middlewares=authelia"
+    image: kestra/kestra:latest
+    pull_policy: always
+    user: "root"
+    command: server standalone --worker-thread=128 --config /etc/config/application.yml
+    volumes:
+      - kestra_data:/app/storage
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp/kestra-wd:/tmp/kestra-wd
+      - ./kestra/application.yml:/etc/config/application.yml
+    depends_on:
+      postgres:
+        condition: service_started
+    networks:
+      - lynk
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kestra.rule=Host(`kestra.${DOMAIN}`)"
+      - "traefik.http.routers.kestra.entrypoints=websecure"
+      - "traefik.http.routers.kestra.tls=true"
+      - "traefik.http.routers.kestra.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://auth.${DOMAIN}"
+      - "traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true"
+      - "traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email"
+      - "traefik.http.services.kestra.loadbalancer.server.port=8080"
+      - "traefik.http.routers.kestra.middlewares=authelia"
 
   grafana:
     image: grafana/grafana:11.1.4-ubuntu
