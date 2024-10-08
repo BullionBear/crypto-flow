@@ -135,6 +135,12 @@ services:
       - "traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email"
       - "traefik.http.services.kestra.loadbalancer.server.port=8080"
       - "traefik.http.routers.kestra.middlewares=authelia"
+      # New router to exclude static assets from Authelia authentication
+      - "traefik.http.routers.kestra-static.rule=Host(`kestra.${DOMAIN}`) && PathPrefix(`/favicon.ico`)" # Exclude favicon.ico
+      - "traefik.http.routers.kestra-static.entrypoints=websecure"
+      - "traefik.http.routers.kestra-static.tls=true"
+      - "traefik.http.routers.kestra-static.tls.certresolver=myresolver"
+      - "traefik.http.services.kestra-static.loadbalancer.server.port=8080"
 
   grafana:
     image: grafana/grafana:11.1.4-ubuntu
