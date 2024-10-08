@@ -54,8 +54,6 @@ services:
     image: yitech/fugle-fastapi:cd6ff3
     container_name: fastapi
     restart: unless-stopped
-    ports:
-      - "8000:8000"
     volumes:
       - ./fugle-fastapi/credentials/cryptfile_pass.cfg:/root/.local/share/python_keyring/cryptfile_pass.cfg:ro
       - ./fugle-fastapi/config.ini:/app/config.ini:ro
@@ -70,6 +68,7 @@ services:
       - "traefik.http.routers.fastapi.entrypoints=websecure"
       - 'traefik.http.routers.fastapi.tls=true'
       - "traefik.http.routers.fastapi.tls.certresolver=myresolver"
+      - "traefik.http.services.fastapi.loadbalancer.server.port=8000"
 
   postgres:
     image: postgres:16.2
@@ -136,8 +135,6 @@ services:
   grafana:
     image: grafana/grafana:11.1.4-ubuntu
     container_name: grafana
-    ports:
-      - "3000:3000"
     volumes:
       - ./o11y/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yml
       - ./o11y/grafana.ini:/etc/grafana/grafana.ini
@@ -150,11 +147,10 @@ services:
       - "traefik.http.routers.grafana.entrypoints=websecure"
       - 'traefik.http.routers.grafana.tls=true'
       - "traefik.http.routers.grafana.tls.certresolver=myresolver"
+      - "traefik.http.services.grafana.loadbalancer.server.port=3000"
 
   prometheus:
     image: prom/prometheus:v2.27.0
-    ports:
-      - "9090:9090"
     volumes:
       - ./o11y/prometheus.yaml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
@@ -167,9 +163,7 @@ services:
       - "traefik.http.routers.prometheus.entrypoints=websecure"
       - 'traefik.http.routers.prometheus.tls=true'
       - "traefik.http.routers.prometheus.tls.certresolver=myresolver"
-      - 'traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://auth.${DOMAIN}'
-      - 'traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true'
-      - 'traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email'
+      - "traefik.http.services.prometheus.loadbalancer.server.port=9090"
 
   init:
     image: grafana/loki:2.9.2
