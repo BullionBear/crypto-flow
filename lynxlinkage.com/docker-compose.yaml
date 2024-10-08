@@ -109,6 +109,23 @@ services:
       - 'traefik.http.routers.pgadmin.tls=true'
       - "traefik.http.routers.pgadmin.tls.certresolver=myresolver"
 
+  kestra:
+    image: kestra/kestra:latest
+    pull_policy: always
+    user: "root"
+    command: server standalone --worker-thread=128 --config /etc/config/application.yml
+    volumes:
+      - kestra_data:/app/storage
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp/kestra-wd:/tmp/kestra-wd
+      - ./kestra/application.yaml:/etc/config/application.yaml
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      postgres:
+        condition: service_started
+
   grafana:
     image: grafana/grafana:11.1.4-ubuntu
     container_name: grafana
@@ -282,3 +299,4 @@ volumes:
   postgres_data:
   alertmanager_data:
   pgadmin_data:
+  kestra_data:
