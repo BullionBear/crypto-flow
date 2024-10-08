@@ -121,7 +121,7 @@ services:
       postgres:
         condition: service_started
     networks:
-      - lynx
+      - lynk
     restart: always
     labels:
       - "traefik.enable=true"
