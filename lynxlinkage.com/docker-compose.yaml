@@ -130,9 +130,6 @@ services:
       - "traefik.http.routers.kestra.entrypoints=websecure"
       - "traefik.http.routers.kestra.tls=true"
       - "traefik.http.routers.kestra.tls.certresolver=myresolver"
-      - "traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://auth.${DOMAIN}"
-      - "traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true"
-      - "traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email"
       - "traefik.http.services.kestra.loadbalancer.server.port=8080"
       - "traefik.http.routers.kestra.middlewares=authelia"
 
