@@ -18,12 +18,7 @@ access_control:
       policy: one_factor
     - domain:
         - "fugle.lynxlinkage.com"
-      resources:
-        - "^/api/.*$"  # Regex to match any path under /api/
       policy: one_factor
-    - domain:
-        - "fugle.lynxlinkage.com"
-      policy: bypass
     - domain:
         - "kestra.lynxlinkage.com"
       policy: one_factor
