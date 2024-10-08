@@ -119,9 +119,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /tmp/kestra-wd:/tmp/kestra-wd
       - ./kestra/application.yml:/etc/config/application.yml
-    # ports:
-    #   - "8080:8080"
-    #   - "8081:8081"
     depends_on:
       postgres:
         condition: service_started
@@ -137,6 +134,7 @@ services:
       - 'traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://auth.${DOMAIN}'
       - 'traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true'
       - 'traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email'
+      - 'traefik.http.routers.kestra.middlewares=authelia'
 
   grafana:
     image: grafana/grafana:11.1.4-ubuntu
