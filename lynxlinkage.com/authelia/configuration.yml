@@ -18,6 +18,9 @@ access_control:
     - domain:
         - "traefik.lynxlinkage.com"
       policy: one_factor
+    - domain:
+        - "kestra.lynxlinkage.com"
+      policy: one_factor
     
 
 session:
