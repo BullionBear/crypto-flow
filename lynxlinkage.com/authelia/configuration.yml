@@ -12,12 +12,18 @@ authentication_backend:
 access_control:
   default_policy: deny
   rules:
-    - domain:
-        - "fugle.lynxlinkage.com"
-      policy: bypass
+    rules:
     - domain:
         - "traefik.lynxlinkage.com"
       policy: one_factor
+    - domain:
+        - "fugle.lynxlinkage.com"
+      resources:
+        - "^/api/.*$"  # Regex to match any path under /api/
+      policy: one_factor
+    - domain:
+        - "fugle.lynxlinkage.com"
+      policy: bypass
     - domain:
         - "kestra.lynxlinkage.com"
       policy: one_factor
@@ -27,8 +33,8 @@ session:
   name: authelia_session
   domain: lynxlinkage.com
   secret: fDqEFi2NsdjVmzSufB86YqXJqiYCjVgeWXoaV1Qa7VzXzZFwSrY6v2Ac6T4tP5oNZsG2he4iIrIZeC7dFuiKD6GhPH4Oe2xbgw0IdUcVWNLDouxruBxy981tPacD145q
-  expiration: 1h
-  inactivity: 5m
+  expiration: 7d
+  inactivity: 6h
   remember_me_duration:  1M
 
 notifier:

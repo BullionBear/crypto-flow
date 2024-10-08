@@ -69,6 +69,7 @@ services:
       - 'traefik.http.routers.fastapi.tls=true'
       - "traefik.http.routers.fastapi.tls.certresolver=myresolver"
       - "traefik.http.services.fastapi.loadbalancer.server.port=8000"
+      - "traefik.http.routers.fastapi.middlewares=authelia"
 
   postgres:
     image: postgres:16.2
@@ -107,6 +108,28 @@ services:
       - "traefik.http.routers.pgadmin.entrypoints=websecure"
       - 'traefik.http.routers.pgadmin.tls=true'
       - "traefik.http.routers.pgadmin.tls.certresolver=myresolver"
+
+  postgrest:
+    container_name: postgrest
+    image: postgrest/postgrest:latest
+    environment:
+      - PGRST_DB_URI=postgres://bullionbear:Sunshine4Jellybean@postgres:5432/fugle
+      - PGRST_DB_SCHEMA=public
+      - PGRST_DB_ANON_ROLE=bullionbear
+      - PGRST_OPENAPI_SERVER_PROXY_URI=http://localhost:3000
+    depends_on:
+      postgres:
+        condition: service_started
+    networks:
+      - lynx
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.postgrest.rule=Host(`postgrest.${DOMAIN}`)"
+      - "traefik.http.routers.postgrest.entrypoints=websecure"
+      - 'traefik.http.routers.postgrest.tls=true'
+      - "traefik.http.routers.postgrest.tls.certresolver=myresolver"
+      - "traefik.http.routers.postgrest.middlewares=authelia"
 
   kestra:
     image: kestra/kestra:latest
