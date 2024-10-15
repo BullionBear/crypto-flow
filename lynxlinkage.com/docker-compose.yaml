@@ -135,6 +135,9 @@ services:
     image: swaggerapi/swagger-ui
     environment:
         API_URL: http://127.0.0.1:3000/
+    depends_on:
+      postgrest:
+        condition: service_started
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.postgrest-swagger.rule=Host(`postgrest.${DOMAIN}`) && PathPrefix(`/swagger`)"
