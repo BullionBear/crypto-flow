@@ -76,7 +76,7 @@ services:
     container_name: postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: lynxlinkage
+      POSTGRES_DB: postgres
       POSTGRES_USER: bullionbear
       POSTGRES_PASSWORD: Sunshine4Jellybean
     volumes:
