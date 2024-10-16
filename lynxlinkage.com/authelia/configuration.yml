@@ -23,12 +23,10 @@ access_control:
       policy: one_factor
     - domain: 
         - "postgrest.lynxlinkage.com"
-      resources:
-        - "^/.*$"
       policy: one_factor
     - domain: 
-        - "postgrest.lynxlinkage.com"
-      policy: bypass
+        - "postgrestdoc.lynxlinkage.com"
+      policy: one_factor
     
 
 session:
