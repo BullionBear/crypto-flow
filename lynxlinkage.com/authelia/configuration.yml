@@ -17,10 +17,21 @@ access_control:
       policy: one_factor
     - domain:
         - "fugle.lynxlinkage.com"
+      resources:
+        - "^/docs"
+      policy: bypass
+    - domain:
+        - "fugle.lynxlinkage.com"
       policy: one_factor
     - domain:
         - "kestra.lynxlinkage.com"
       policy: one_factor
+    - domain: "postgrest.lynxlinkage.com"
+      resources:
+        - "^/.*$"
+      policy: one_factor
+    - domain: "postgrest.lynxlinkage.com"
+      policy: bypass
     
 
 session:
