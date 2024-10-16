@@ -10,7 +10,7 @@ authentication_backend:
     path: /config/users_database.yml
 
 access_control:
-  default_policy: deny
+  default_policy: bypass
   rules:
     - domain:
         - "traefik.lynxlinkage.com"
