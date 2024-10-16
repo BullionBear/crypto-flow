@@ -15,8 +15,8 @@ access_control:
     - domain:
         - "traefik.lynxlinkage.com"
       policy: one_factor
-    - domain:
-        - "fugle.lynxlinkage.com"
+    - domain_regex:
+        - '^fugle\.lynxlinkage\.com\/api\/.+$'
       policy: one_factor
     - domain:
         - "kestra.lynxlinkage.com"
