@@ -21,12 +21,10 @@ access_control:
     - domain:
         - "kestra.lynxlinkage.com"
       policy: one_factor
-    - domain: 
-        - "postgrest.lynxlinkage.com"
-      policy: one_factor
-    - domain: 
-        - "postgrestdoc.lynxlinkage.com"
-      policy: one_factor
+    - domain_regex: 
+        - '^postgrest\.lynxlinkage\.com\/.+$'
+      policy: 'one_factor'
+    
     
 
 session:
