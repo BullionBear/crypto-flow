@@ -138,6 +138,8 @@ services:
     depends_on:
       postgrest:
         condition: service_started
+    networks:
+      - lynk
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.postgrest-swagger.rule=Host(`postgrest.${DOMAIN}`) && PathPrefix(`/swagger`)"
