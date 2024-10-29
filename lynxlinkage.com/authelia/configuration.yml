@@ -27,9 +27,9 @@ access_control:
     # - domain_regex:
     #     - '^fugle\.lynxlinkage\.com\/api\/.+$'
     #   policy: one_factor
-    # - domain_regex: 
-    #     - '^postgrest\.lynxlinkage\.com\/.+$'
-    #   policy: 'one_factor'
+    - domain_regex: 
+        - '^postgrest\.lynxlinkage\.com\/.+$'
+      policy: 'one_factor'
     
     
 
