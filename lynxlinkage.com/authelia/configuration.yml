@@ -15,15 +15,21 @@ access_control:
     - domain:
         - "traefik.lynxlinkage.com"
       policy: one_factor
-    - domain_regex:
-        - '^fugle\.lynxlinkage\.com\/api\/.+$'
+    - domain:
+        - "fugle.lynxlinkage.com"
+      policy: one_factor
+    - domain:
+        - "postgrest.lynxlinkage.com"
       policy: one_factor
     - domain:
         - "kestra.lynxlinkage.com"
       policy: one_factor
-    - domain_regex: 
-        - '^postgrest\.lynxlinkage\.com\/.+$'
-      policy: 'one_factor'
+    # - domain_regex:
+    #     - '^fugle\.lynxlinkage\.com\/api\/.+$'
+    #   policy: one_factor
+    # - domain_regex: 
+    #     - '^postgrest\.lynxlinkage\.com\/.+$'
+    #   policy: 'one_factor'
     
     
 
