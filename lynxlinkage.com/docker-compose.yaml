@@ -51,7 +51,7 @@ services:
       - lynk
 
   fugle-fastapi:
-    image: yitech/fugle-fastapi:cd6ff3
+    image: yitech/fugle-fastapi:8b6a3b
     container_name: fastapi
     restart: unless-stopped
     volumes:
@@ -131,11 +131,11 @@ services:
       - "traefik.http.routers.postgrest.tls.certresolver=myresolver"
       - "traefik.http.services.postgrest.loadbalancer.server.port=3000"
       - "traefik.http.routers.postgrest.middlewares=authelia"
-  
+
   postgrest-swagger:
     image: swaggerapi/swagger-ui
     environment:
-        API_URL: https://postgrest.lynxlinkage.com
+      API_URL: https://postgrest.lynxlinkage.com
     depends_on:
       postgrest:
         condition: service_started
