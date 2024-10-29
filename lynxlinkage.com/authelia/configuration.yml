@@ -19,9 +19,6 @@ access_control:
         - "fugle.lynxlinkage.com"
       policy: one_factor
     - domain:
-        - "postgrest.lynxlinkage.com"
-      policy: one_factor
-    - domain:
         - "kestra.lynxlinkage.com"
       policy: one_factor
     # - domain_regex:
