@@ -148,7 +148,7 @@ services:
       - 'traefik.http.routers.postgrest-swagger.tls=true'
       - "traefik.http.routers.postgrest-swagger.tls.certresolver=myresolver"
       - "traefik.http.services.postgrest-swagger.loadbalancer.server.port=8080"
-      
+
   metabase:
     image: metabase/metabase
     container_name: metabase
@@ -363,3 +363,4 @@ volumes:
   alertmanager_data:
   pgadmin_data:
   kestra_data:
+  metabase_data:
