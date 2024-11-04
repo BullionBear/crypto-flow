@@ -366,4 +366,3 @@ volumes:
   alertmanager_data:
   pgadmin_data:
   kestra_data:
-  metabase_data:
