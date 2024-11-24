@@ -109,6 +109,20 @@ services:
       - 'traefik.http.routers.pgadmin.tls=true'
       - "traefik.http.routers.pgadmin.tls.certresolver=myresolver"
 
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: bullionbear
+      MONGO_INITDB_ROOT_PASSWORD: Sunshine4Jellybean
+    volumes:
+      - mongodb_data:/data/db
+    restart: always
+    networks:
+      - lynk
+
   # postgrest:
   #   container_name: postgrest
   #   image: postgrest/postgrest:latest
@@ -365,3 +379,4 @@ volumes:
   alertmanager_data:
   pgadmin_data:
   kestra_data:
+  mongodb_data:
