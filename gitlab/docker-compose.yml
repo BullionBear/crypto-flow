@@ -1,0 +1,25 @@
+services:
+  gitlab:
+    image: gitlab/gitlab-ee:18.3.5-ee.0
+    container_name: gitlab-trivion
+    restart: unless-stopped
+    hostname: 'gitlab-trivion'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        # Add any other gitlab.rb configuration here, each on its own line
+        external_url 'https://gitlab.trivion.io'
+    ports:
+      - '80:80'
+      - '443:443'
+      - '2424:2424'
+    volumes:
+      - './config:/etc/gitlab'
+      - './logs:/var/log/gitlab'
+      - './data:/var/opt/gitlab'
+    shm_size: '256m'
+    networks:
+      - trivion-gitlab
+
+networks:
+  trivion-gitlab:
+    external: true
