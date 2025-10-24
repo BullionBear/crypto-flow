@@ -3,7 +3,7 @@ services:
     image: gitlab/gitlab-ee:18.3.5-ee.0
     container_name: gitlab-trivion
     restart: unless-stopped
-    hostname: 'gitlab.lynxlinkage.com'
+    hostname: 'gitlab.trivion.io'
     ports:
       - '80:80'
       - '443:443'
@@ -18,4 +18,4 @@ services:
 
 networks:
   trivion-gitlab:
-    external: true
+    bridge: true
