@@ -3,11 +3,7 @@ services:
     image: gitlab/gitlab-ee:18.3.5-ee.0
     container_name: gitlab-trivion
     restart: unless-stopped
-    hostname: 'gitlab-trivion'
-    environment:
-      GITLAB_OMNIBUS_CONFIG: |
-        # Add any other gitlab.rb configuration here, each on its own line
-        external_url 'https://gitlab.trivion.io'
+    hostname: 'gitlab.lynxlinkage.com'
     ports:
       - '80:80'
       - '443:443'
